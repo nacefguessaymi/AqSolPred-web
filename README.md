@@ -4,7 +4,7 @@ AqSolPred is an highly accurate solubility prediction model that consists consen
 
 AqSolPred showed a top-performance (0.348 LogS Mean Absolute Error) on Huuskonen benchmark dataset [3].
 
-![alt text](https://raw.githubusercontent.com/mcsorkun/AqSolPred-web/main/streamlit-aqsolpred.gif)
+![alt text](./static/streamlit-aqsolpred.gif)
 
 # AqSolPred Web Version
 
