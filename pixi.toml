@@ -2,7 +2,7 @@
 authors = ["Nacef Guessaymi <nacefguess@hotmail.com>"]
 channels = ["conda-forge"]
 name = "AqSolPred-web"
-platforms = ["osx-64"]
+platforms = ["osx-64", "linux-64"]
 version = "0.1.0"
 
 [tasks]
