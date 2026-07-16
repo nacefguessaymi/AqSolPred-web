@@ -11,11 +11,6 @@ import csv
 import predefined_models
 
 
-DIR_SCRIPT: Path = Path(__file__).parent.resolve()
-DIR_STUDY: Path = Path(DIR_SCRIPT  / ".." / "..").resolve()
-
-
-
 def calculate_logS(molecules, models_dir: Path) -> list:
     """Takes in a list of RDKIT molecules and returns
     their LogS. Index of LogS = index in moleculeslist.
@@ -32,7 +27,9 @@ def calculate_logS(molecules, models_dir: Path) -> list:
 
     # Import pretrained models
     mlp_model_import = pickle.load(open((models_dir / "aqsolpred_mlp_model.pkl"), "rb"))
-    xgboost_model_import = pickle.load(open((models_dir / "aqsolpred_xgb_model.pkl"), "rb"))
+    xgboost_model_import = pickle.load(
+        open((models_dir / "aqsolpred_xgb_model.pkl"), "rb")
+    )
 
     # predict test data (MLP,XGB,RF)
     pred_mlp = mlp_model_import.predict(all_generated_descriptors)
@@ -43,18 +40,15 @@ def calculate_logS(molecules, models_dir: Path) -> list:
     return pred_consensus
 
 
-
 def build_pains_catalog():
     params = FilterCatalogParams()
     params.AddCatalog(FilterCatalogParams.FilterCatalogs.PAINS)
     return FilterCatalog.FilterCatalog(params)
 
 
-
 def rank_csv_in(csv_rank_file: Path) -> list:
     with open(csv_rank_file, "r") as f:
         return [line.strip().split(",") for line in f.read().strip().split("\n")]
-
 
 
 def main(sdf_file: Path, csv_rank_file: Path, models_dir: Path, csv_file: Path):
@@ -72,14 +66,28 @@ def main(sdf_file: Path, csv_rank_file: Path, models_dir: Path, csv_file: Path):
             Will create folder if it does not exist
     """
     # read in the molecules
-    molecules = Chem.SDMolSupplier(str(sdf_file), sanitize=True, removeHs=False,
-                            strictParsing=True)
+    molecules = Chem.SDMolSupplier(
+        str(sdf_file), sanitize=True, removeHs=False, strictParsing=True
+    )
     # setup molecule analysis
     logs_list: list[float] = calculate_logS(molecules, models_dir)
     pains_catalog = build_pains_catalog()
     csv_rank_list: list[list] = rank_csv_in(csv_rank_file)
     # create csv
-    data: list[list] = [["Name","LogS","CNN_VS","CNNaffinity","Molar Mass","Heavy Atoms","PAINS Flags","SMILES","Soluability","Notes"]]
+    data: list[list] = [
+        [
+            "Name",
+            "LogS",
+            "CNN_VS",
+            "CNNaffinity",
+            "Molar Mass",
+            "Heavy Atoms",
+            "PAINS Flags",
+            "SMILES",
+            "Soluability",
+            "Notes",
+        ]
+    ]
     for ind, mol in enumerate(molecules):
         temp_data: list = []
         # get name
@@ -100,24 +108,26 @@ def main(sdf_file: Path, csv_rank_file: Path, models_dir: Path, csv_file: Path):
         # get smiles
         temp_data.append(Chem.MolToSmiles(mol))
         # if soluable
-        temp_data.append("ok" if logs_list[ind] > -4.5 else "predicted to be poorly soluable")
+        temp_data.append(
+            "ok" if logs_list[ind] > -4.5 else "predicted to be poorly soluable"
+        )
         # notes
         temp_data.append("")
 
         data.append(temp_data)
-    
+
     if not csv_file.parent.exists():
         csv_file.parent.mkdir(parents=True, exist_ok=True)
     with open(csv_file, "w", newline="") as f:
         csv.writer(f).writerows(data)
 
 
-
 if __name__ == "__main__":
     # inputs
     sdf_file: Path = (DIR_STUDY / "put in path to place").resolve()
-    csv_rank_file: Path = (DIR_SCRIPT / "061-filter-gnina-op" / "data" / "best_drugs" / "overall_best.csv").resolve()
-    models_dir: Path = (DIR_SCRIPT / ".." / "models")
+    csv_rank_file: Path = (
+        DIR_SCRIPT / "061-filter-gnina-op" / "data" / "best_drugs" / "overall_best.csv"
+    ).resolve()
+    models_dir: Path = DIR_SCRIPT / ".." / "models"
     csv_file: Path = (DIR_SCRIPT / ".." / "data" / "top_dock_stats.csv").resolve()
     main(sdf_file, csv_rank_file, models_dir, csv_file)
-

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Created on Sun Oct 18 14:54:37 2020
 
@@ -26,64 +25,6 @@ from sklearn.impute import SimpleImputer
 ######################
 ## Calculate molecular descriptors
 def generate(smiles_list, verbose=False):
-    selected_columns = [
-        "nHBAcc",
-        "nHBDon",
-        "nRot",
-        "nBonds",
-        "nAromBond",
-        "nBondsO",
-        "nBondsS",
-        "TopoPSA(NO)",
-        "TopoPSA",
-        "LabuteASA",
-        "bpol",
-        "nAcid",
-        "nBase",
-        "ECIndex",
-        "GGI1",
-        "SLogP",
-        "SMR",
-        "BertzCT",
-        "BalabanJ",
-        "Zagreb1",
-        "ABCGG",
-        "nHRing",
-        "naHRing",
-        "NsCH3",
-        "NaaCH",
-        "NaaaC",
-        "NssssC",
-        "SsCH3",
-        "SdCH2",
-        "SssCH2",
-        "StCH",
-        "SdsCH",
-        "SaaCH",
-        "SsssCH",
-        "SdssC",
-        "SaasC",
-        "SaaaC",
-        "SsNH2",
-        "SssNH",
-        "StN",
-        "SdsN",
-        "SaaN",
-        "SsssN",
-        "SaasN",
-        "SsOH",
-        "SdO",
-        "SssO",
-        "SaaO",
-        "SsF",
-        "SdsssP",
-        "SsSH",
-        "SdS",
-        "SddssS",
-        "SsCl",
-        "SsI",
-    ]
-
     # Test Data filter
     test_smiles_list = []
     test_formula_list = []
