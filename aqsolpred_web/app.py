@@ -7,64 +7,24 @@ Created on Sun Oct 18 14:54:37 2020
 ######################
 # Import libraries
 ######################
-import streamlit as st
-import pickle
-from PIL import Image
-import pandas as pd
-from rdkit import Chem
-import xgboost
-from sklearn.neural_network import MLPRegressor
-from sklearn.ensemble import RandomForestRegressor
-import predefined_models
 import base64
+import pickle
+
+import pandas as pd
+import predefined_models
+import streamlit as st
+import xgboost
+from PIL import Image
+from rdkit import Chem
+from sklearn.ensemble import RandomForestRegressor
 from sklearn.impute import SimpleImputer
+from sklearn.neural_network import MLPRegressor
 
 
 ######################
 # Custom function
 ######################
 ## Calculate molecular descriptors
-def generate(smiles_list, verbose=False):
-    # Test Data filter
-    test_smiles_list = []
-    test_formula_list = []
-    test_mordred_descriptors = []
-
-    for smiles in smiles_list:
-        mol = Chem.MolFromSmiles(smiles)
-        mol = Chem.AddHs(mol)
-        formula = Chem.rdMolDescriptors.CalcMolFormula(mol)
-        formula = formula.replace("+", "")
-        formula = formula.replace("-", "")
-
-        test_smiles_list.append(smiles)
-        test_formula_list.append(formula)
-        test_mordred_descriptors.append(
-            predefined_models.predefined_mordred(mol, "all")
-        )
-
-    # get all column names
-    column_names = predefined_models.predefined_mordred(
-        Chem.MolFromSmiles("CC"), "all", True
-    )
-
-    # create Mordred desc dataframe
-    test_df = pd.DataFrame(
-        index=test_formula_list, data=test_mordred_descriptors, columns=column_names
-    )
-
-    # Select predefined columns by the model
-    selected_data_test = test_df[selected_columns]
-    selected_data_test = selected_data_test.apply(pd.to_numeric, errors="coerce")
-    selected_data_test = selected_data_test.fillna(0)
-
-    nan_cols = selected_data_test.columns[selected_data_test.isna().any()].tolist()
-    if nan_cols:
-        print(
-            f"Warning: {len(nan_cols)} descriptors failed: {nan_cols[:5]}..."
-        )  # Show first 5
-
-    return selected_data_test
 
 
 ######################
@@ -113,19 +73,6 @@ if len(SMILES) > 2000:
     SMILES = SMILES[0:2000]
 
 ## Calculate molecular descriptors
-generated_descriptors = generate(SMILES)
-
-# Import pretrained models
-mlp_model_import = pickle.load(open("./models/aqsolpred_mlp_model.pkl", "rb"))
-xgboost_model_import = pickle.load(open("./models/aqsolpred_xgb_model.pkl", "rb"))
-
-
-# predict test data (MLP,XGB,RF)
-pred_mlp = mlp_model_import.predict(generated_descriptors)
-pred_xgb = xgboost_model_import.predict(generated_descriptors)
-# calculate consensus
-pred_consensus = (pred_mlp + pred_xgb) / 2
-
 df_results = pd.DataFrame(SMILES, columns=["SMILES"])
 df_results["LogS (AqSolPred v1.1s)"] = pred_consensus
 df_results = df_results.round(3)

@@ -3,10 +3,10 @@
 from collections.abc import Sequence
 
 import numpy as np
+from loguru import logger
 from sklearn.metrics import mean_absolute_error as mae
 from sklearn.metrics import mean_squared_error as mse
 from sklearn.metrics import r2_score as r2
-from loguru import logger
 
 
 def get_errors(

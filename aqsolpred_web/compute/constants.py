@@ -3,7 +3,8 @@
 # Descriptors (by Mordred name) that the pretrained AqSolPred models expect,
 # in order. Shared by both the SMILES-based (app.py) and Mol-based
 # (function.py) descriptor-generation entry points.
-SELECT_COLUMNS: list[str] = [
+
+SELECTED_COLUMNS: list[str] = [
     "nHBAcc",
     "nHBDon",
     "nRot",

@@ -19,20 +19,22 @@ from collections.abc import Callable
 
 import mordred
 from mordred import (
-    SLogP,
-    Chi,
     ABCIndex,
-    BondCount,
-    Polarizability,
-    RingCount,
-    EState,
-    RotatableBond,
-    CarbonTypes,
     Aromatic,
     AtomCount,
-    VdwVolumeABC,
-    McGowanVolume,
+    BalabanJ,
+    BertzCT,
+    BondCount,
+    CarbonTypes,
+    Chi,
+    EState,
     HydrogenBond,
+    McGowanVolume,
+    Polarizability,
+    RingCount,
+    RotatableBond,
+    SLogP,
+    VdwVolumeABC,
 )
 
 RegisterFn = Callable[[mordred.Calculator], None]
@@ -71,17 +73,17 @@ def register_bond(calc: mordred.Calculator) -> None:
 
 def register_topological(calc: mordred.Calculator) -> None:
     """Register topological descriptors onto `calc`."""
-    calc1.register(mordred.McGowanVolume.McGowanVolume)
-    calc1.register(mordred.TopoPSA.TopoPSA(True))
-    calc1.register(mordred.TopoPSA.TopoPSA(False))
-    calc1.register(mordred.MoeType.LabuteASA)
-    calc1.register(mordred.Polarizability.APol)
-    calc1.register(mordred.Polarizability.BPol)
-    calc1.register(mordred.AcidBase.AcidicGroupCount)
-    calc1.register(mordred.AcidBase.BasicGroupCount)
-    calc1.register(mordred.EccentricConnectivityIndex.EccentricConnectivityIndex)
-    calc1.register(mordred.TopologicalCharge.TopologicalCharge("raw", 1))
-    calc1.register(mordred.TopologicalCharge.TopologicalCharge("mean", 1))
+    calc.register(mordred.McGowanVolume.McGowanVolume)
+    calc.register(mordred.TopoPSA.TopoPSA(True))
+    calc.register(mordred.TopoPSA.TopoPSA(False))
+    calc.register(mordred.MoeType.LabuteASA)
+    calc.register(mordred.Polarizability.APol)
+    calc.register(mordred.Polarizability.BPol)
+    calc.register(mordred.AcidBase.AcidicGroupCount)
+    calc.register(mordred.AcidBase.BasicGroupCount)
+    calc.register(mordred.EccentricConnectivityIndex.EccentricConnectivityIndex)
+    calc.register(mordred.TopologicalCharge.TopologicalCharge("raw", 1))
+    calc.register(mordred.TopologicalCharge.TopologicalCharge("mean", 1))
 
 
 def register_index(calc: mordred.Calculator) -> None:
