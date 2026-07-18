@@ -1,16 +1,15 @@
 """Model-ready descriptor matrix computation for sets of RDKit molecules."""
 
-from typing import cast
 from collections.abc import Sequence
+from typing import cast
 
 import pandas as pd
+from loguru import logger
 from rdkit import Chem
 from rdkit.Chem import rdMolDescriptors
 from rdkit.Chem.rdchem import Mol
-from loguru import logger
 
-from aqsolpred_web.compute import SELECTED_COLUMNS
-from aqsolpred_web.compute import predefined_mordred
+from aqsolpred_web.compute import SELECTED_COLUMNS, predefined_mordred
 
 
 def compute_descriptors(molecules: Sequence[Mol]) -> pd.DataFrame:

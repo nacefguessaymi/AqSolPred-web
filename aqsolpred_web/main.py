@@ -1,9 +1,10 @@
-from pathlib import Path
+import pickle
 from collections.abc import Sequence
+from pathlib import Path
 
 import pandas as pd
-import pickle
 from rdkit.Chem.rdchem import Mol
+
 from aqsolpred_web.compute import compute_descriptors
 from aqsolpred_web.core import (
     DEFAULT_MODELS_DIR,

@@ -20,7 +20,6 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.impute import SimpleImputer
 from sklearn.neural_network import MLPRegressor
 
-
 ######################
 # Custom function
 ######################

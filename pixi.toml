@@ -27,5 +27,5 @@ black = ">=26.5.1,<27"
 isort = ">=8.0.1,<9"
 
 [feature.dev.tasks]
-format = {cmd = "black ./aqsolpred-web -t py314", description = "Run the black formatter"}
+format = {cmd = "black aqsolpred_web/ -t py314", description = "Run the black formatter"}
 sort-imports = {cmd = "isort aqsolpred_web/", description = "Sort imports"}
