@@ -4,11 +4,11 @@ import mordred
 import numpy.typing as npt
 from rdkit.Chem.rdchem import Mol
 
-from aqsolpred_web.compute import GROUPS_BY_DESC_TYPE
+from aqsolpred_web.compute.descriptor_groups import GROUPS_BY_DESC_TYPE
 
 
 def predefined_mordred(
-    mol: Mol, des_type: str = "best", desc_names: bool = False
+    mol: Mol, desc_type: str = "best", desc_names: bool = False
 ) -> list[str] | npt.NDArray:
     """Compute (or list) Mordred descriptors for a molecule.
 
@@ -27,7 +27,7 @@ def predefined_mordred(
     """
     calc1 = mordred.Calculator()
 
-    for register in GROUPS_BY_DESC_TYPE.get(des_type, []):
+    for register in GROUPS_BY_DESC_TYPE.get(desc_type, []):
         register(calc1)
 
     if desc_names:

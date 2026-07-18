@@ -20,21 +20,25 @@ from collections.abc import Callable
 import mordred
 from mordred import (
     ABCIndex,
+    AcidBase,
     Aromatic,
     AtomCount,
     BalabanJ,
     BertzCT,
     BondCount,
-    CarbonTypes,
-    Chi,
+    EccentricConnectivityIndex,
     EState,
     HydrogenBond,
     McGowanVolume,
+    MoeType,
     Polarizability,
     RingCount,
     RotatableBond,
     SLogP,
-    VdwVolumeABC,
+    TopoPSA,
+    TopologicalCharge,
+    WienerIndex,
+    ZagrebIndex,
 )
 
 RegisterFn = Callable[[mordred.Calculator], None]

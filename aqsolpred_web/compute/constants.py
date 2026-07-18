@@ -1,8 +1,8 @@
 """Shared constants for the features package."""
 
 # Descriptors (by Mordred name) that the pretrained AqSolPred models expect,
-# in order. Shared by both the SMILES-based (app.py) and Mol-based
-# (function.py) descriptor-generation entry points.
+# in order. Shared by both the SMILES-based (web.app) and Mol-based
+# (cli.report, via main.calculate_logS) descriptor-generation entry points.
 
 SELECTED_COLUMNS: list[str] = [
     "nHBAcc",

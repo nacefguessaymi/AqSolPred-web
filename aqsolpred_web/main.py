@@ -13,7 +13,7 @@ from aqsolpred_web.core import (
 )
 
 
-def predict_logS_from_descriptors(
+def predict_logs_from_descriptors(
     descriptors: pd.DataFrame, models_dir: Path = DEFAULT_MODELS_DIR
 ) -> list[float]:
     """Predict LogS from a precomputed descriptor matrix.
@@ -59,4 +59,4 @@ def calculate_logs(
         `molecules[i]`.
     """
     descriptors = compute_descriptors(molecules)
-    return predict_logS_from_descriptors(descriptors, models_dir)
+    return predict_logs_from_descriptors(descriptors, models_dir)

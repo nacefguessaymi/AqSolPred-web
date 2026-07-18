@@ -20,9 +20,9 @@ from typing import Any
 
 from loguru import logger
 
-from .main import calculate_logs, predict_logS_from_descriptors
+from .main import calculate_logs, predict_logs_from_descriptors
 
-__all__ = ["predict_logS_from_descriptors", "calculate_logs"]
+__all__ = ["predict_logs_from_descriptors", "calculate_logs"]
 
 logger.disable("aqsolpred_web")
 

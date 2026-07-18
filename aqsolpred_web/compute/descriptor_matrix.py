@@ -9,7 +9,8 @@ from rdkit import Chem
 from rdkit.Chem import rdMolDescriptors
 from rdkit.Chem.rdchem import Mol
 
-from aqsolpred_web.compute import SELECTED_COLUMNS, predefined_mordred
+from aqsolpred_web.compute.constants import SELECTED_COLUMNS
+from aqsolpred_web.compute.mordred_descriptors import predefined_mordred
 
 
 def compute_descriptors(molecules: Sequence[Mol]) -> pd.DataFrame:
