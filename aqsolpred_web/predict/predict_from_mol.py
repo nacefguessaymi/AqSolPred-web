@@ -1,6 +1,7 @@
 from collections.abc import Sequence
 from pathlib import Path
 
+from rdkit import Chem
 from rdkit.Chem.rdchem import Mol
 
 from aqsolpred_web.core import DEFAULT_MODELS_DIR
@@ -30,3 +31,16 @@ def calculate_logs(
     """
     descriptors = compute_descriptors(molecules)
     return predict_logs_from_descriptors(descriptors, models_dir)
+
+
+def predict_logs_single(smiles: str, models_dir: Path = DEFAULT_MODELS_DIR) -> float:
+    """Predict LogS for a single SMILES string.
+
+    Args:
+        smiles: The smiles string of the molecule being
+        predicted
+        models_dir: Path to the directory containing the
+        pickled model files
+    """
+    mol = Chem.MolFromSmiles(smiles)
+    return calculate_logs([mol], models_dir)[0]
