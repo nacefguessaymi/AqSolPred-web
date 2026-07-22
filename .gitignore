@@ -2,3 +2,7 @@
 .pixi/*
 !.pixi/config.toml
 *__pycache__*
+build/
+*.egg-info/
+*.pyc
+*.conda

@@ -7,15 +7,13 @@ name = "aqsolpred_web"
 version = "0.1.0"
 readme = "README.md"
 requires-python = ">=3.7,<3.15"
-# No dependencies list: runtime deps (rdkit, mordred, xgboost,
-# streamlit, etc.) are managed by pixi.toml, not here. This file exists
-# so aqsolpred_web is importable as a package via `pip install -e .`.
 
 [project.scripts]
 aqsolpred-predict = "aqsolpred_web.cli.predict:main"
 
 [build-system]
-requires = ["setuptools"]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
 where = ["."]
