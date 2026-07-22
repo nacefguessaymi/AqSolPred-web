@@ -1,6 +1,7 @@
 """CSV reading for report DataFrames."""
 
 from pathlib import Path
+
 import pandas as pd
 
 

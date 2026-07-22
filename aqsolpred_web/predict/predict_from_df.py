@@ -2,13 +2,12 @@
 
 from pathlib import Path
 
-from rdkit import Chem
 import pandas as pd
+from rdkit import Chem
 
 from aqsolpred_web.core import DEFAULT_MODELS_DIR
-from aqsolpred_web.predict.predict_from_mol import calculate_logs
-
 from aqsolpred_web.parse import find_smiles
+from aqsolpred_web.predict.predict_from_mol import calculate_logs
 
 
 def predict_logs_from_df(

@@ -4,8 +4,8 @@ from pathlib import Path
 from rdkit import Chem
 from rdkit.Chem.rdchem import Mol
 
-from aqsolpred_web.core import DEFAULT_MODELS_DIR
 from aqsolpred_web.compute import compute_descriptors
+from aqsolpred_web.core import DEFAULT_MODELS_DIR
 from aqsolpred_web.predict.predict_from_desc import predict_logs_from_descriptors
 
 

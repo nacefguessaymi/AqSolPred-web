@@ -35,8 +35,8 @@ from mordred import (
     RingCount,
     RotatableBond,
     SLogP,
-    TopoPSA,
     TopologicalCharge,
+    TopoPSA,
     WienerIndex,
     ZagrebIndex,
 )
