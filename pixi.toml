@@ -1,7 +1,7 @@
 [workspace]
 authors = ["Nacef Guessaymi <nacefguess@hotmail.com>"]
 channels = ["conda-forge"]
-name = "AqSolPred-web"
+name = "aqsolpred_web"
 platforms = ["osx-64", "linux-64"]
 version = "0.1.0"
 preview = ["pixi-build"]
@@ -28,12 +28,12 @@ black = ">=21.12b0,<22"
 isort = ">=5.11.5,<6"
 
 [feature.dev.tasks]
-format = {cmd = "black aqsolpred_web/ -t py314", description = "Run the black formatter"}
+format = {cmd = "black aqsolpred_web/ -t py37", description = "Run the black formatter"}
 sort-imports = {cmd = "isort aqsolpred_web/", description = "Sort imports"}
 clean-build = { cmd = "rm -rf build aqsolpred_web.egg-info && find . -name '__pycache__' -type d -exec rm -rf {} +", description = "Remove build artifacts, egg-info, and __pycache__ dirs" }
 
 [package]
-name = "aqsolpred-web"
+name = "aqsolpred_web"
 version = "0.1.0"
  
 [package.build]
@@ -41,6 +41,7 @@ backend = { name = "pixi-build-python", version = "0.*" }
  
 [package.host-dependencies]
 setuptools = ">=61"
+wheel = "*"
  
 [package.run-dependencies]
 python = "==3.7.6"

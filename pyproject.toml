@@ -9,7 +9,7 @@ readme = "README.md"
 requires-python = "==3.7.6"
 
 [project.scripts]
-aqsolpred-predict = "aqsolpred_web.cli.predict:main"
+aqsolpred_predict = "aqsolpred_web.cli.predict:main"
 
 [build-system]
 requires = ["setuptools>=61.0", "wheel"]
