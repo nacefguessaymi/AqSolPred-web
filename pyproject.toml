@@ -6,7 +6,7 @@ description = "AqSolPred aqueous solubility prediction pipeline (CLI + web app)"
 name = "aqsolpred_web"
 version = "0.1.0"
 readme = "README.md"
-requires-python = ">=3.7,<3.15"
+requires-python = "==3.7.6"
 
 [project.scripts]
 aqsolpred-predict = "aqsolpred_web.cli.predict:main"
