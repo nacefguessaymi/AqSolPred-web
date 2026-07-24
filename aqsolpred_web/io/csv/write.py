@@ -1,5 +1,7 @@
 """CSV writing for report DataFrames."""
 
+from __future__ import annotations
+
 from pathlib import Path
 
 import pandas as pd

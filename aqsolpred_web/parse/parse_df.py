@@ -1,6 +1,8 @@
 """Parser functions for reading data from a DataFrame built
 from a csv."""
 
+from __future__ import annotations
+
 import pandas as pd
 
 

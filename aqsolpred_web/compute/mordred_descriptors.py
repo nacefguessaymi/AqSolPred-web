@@ -1,7 +1,8 @@
 """Single-molecule Mordred descriptor computation."""
 
+from __future__ import annotations
 import mordred
-import numpy.typing as npt
+import numpy as np
 from rdkit.Chem.rdchem import Mol
 
 from aqsolpred_web.compute.descriptor_groups import GROUPS_BY_DESC_TYPE
@@ -9,7 +10,7 @@ from aqsolpred_web.compute.descriptor_groups import GROUPS_BY_DESC_TYPE
 
 def predefined_mordred(
     mol: Mol, desc_type: str = "best", desc_names: bool = False
-) -> list[str] | npt.NDArray:
+) -> list[str] | np.NDArray:
     """Compute (or list) Mordred descriptors for a molecule.
 
     Args:

@@ -11,6 +11,8 @@ Subpackages:
 into: `calculate_logS`, `predict_logS_from_descriptors`.
 """
 
+from __future__ import annotations
+
 __version__ = "0.0.0"
 
 import os
@@ -22,7 +24,7 @@ from loguru import logger
 
 from .predict import calculate_logs
 
-__all__ = [calculate_logs]
+__all__ = ["calculate_logs"]
 
 logger.disable("aqsolpred_web")
 

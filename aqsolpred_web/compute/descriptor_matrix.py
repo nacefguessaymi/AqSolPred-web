@@ -1,5 +1,6 @@
 """Model-ready descriptor matrix computation for sets of RDKit molecules."""
 
+from __future__ import annotations
 from collections.abc import Sequence
 from typing import cast
 

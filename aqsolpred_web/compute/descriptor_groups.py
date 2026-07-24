@@ -15,7 +15,8 @@ for it. This preserves the original behavior exactly:
     - Any other recognized name (e.g. "ring") registers just that group.
 """
 
-from collections.abc import Callable
+from __future__ import annotations
+from typing import Callable
 
 import mordred
 from mordred import (

@@ -1,5 +1,6 @@
+from __future__ import annotations
+
 import pickle
-from collections.abc import Sequence
 from pathlib import Path
 
 import pandas as pd
@@ -10,6 +11,7 @@ from aqsolpred_web.core import (
     DEFAULT_MODELS_DIR,
     MLP_MODEL_FILENAME,
     XGB_MODEL_FILENAME,
+    ensure_model_file,
 )
 
 
@@ -28,8 +30,11 @@ def predict_logs_from_descriptors(
     Returns:
         Predicted LogS values, one per row of `descriptors`.
     """
-    mlp_model_import = pickle.load(open(models_dir / MLP_MODEL_FILENAME, "rb"))
-    xgboost_model_import = pickle.load(open(models_dir / XGB_MODEL_FILENAME, "rb"))
+
+    mlp_model_import = pickle.load(open(ensure_model_file(MLP_MODEL_FILENAME), "rb"))
+    xgboost_model_import = pickle.load(
+        open(ensure_model_file(XGB_MODEL_FILENAME), "rb")
+    )
 
     pred_mlp = mlp_model_import.predict(descriptors)
     pred_xgb = xgboost_model_import.predict(descriptors)

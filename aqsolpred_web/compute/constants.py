@@ -1,5 +1,6 @@
 """Shared constants for the features package."""
 
+from __future__ import annotations
 # Descriptors (by Mordred name) that the pretrained AqSolPred models expect,
 # in order. Shared by both the SMILES-based (web.app) and Mol-based
 # (cli.report, via main.calculate_logS) descriptor-generation entry points.

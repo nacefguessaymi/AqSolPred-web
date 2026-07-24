@@ -1,5 +1,7 @@
 """Predict LogS for a DataFrame containing a SMILES column."""
 
+from __future__ import annotations
+
 from pathlib import Path
 
 import pandas as pd
